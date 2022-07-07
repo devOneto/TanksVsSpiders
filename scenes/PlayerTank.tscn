@@ -9,6 +9,7 @@
 extents = Vector2( 28, 28 )
 
 [node name="PlayerTank" type="KinematicBody2D" groups=["Player"]]
+collision_mask = 6
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -19,28 +20,31 @@ script = ExtResource( 4 )
 shape = SubResource( 1 )
 
 [node name="Life" type="Node2D" parent="."]
+visible = false
 
 [node name="h5" type="Sprite" parent="Life"]
-position = Vector2( -31.8016, -40.25 )
+position = Vector2( -32.8016, -61.25 )
 scale = Vector2( 0.00964286, 0.00964286 )
 texture = ExtResource( 3 )
 
 [node name="h4" type="Sprite" parent="Life"]
-position = Vector2( -15.8016, -40.25 )
+position = Vector2( -16.8016, -61.25 )
 scale = Vector2( 0.00964286, 0.00964286 )
 texture = ExtResource( 3 )
 
 [node name="h3" type="Sprite" parent="Life"]
-position = Vector2( 0.198395, -40.25 )
+position = Vector2( -0.801613, -61.25 )
 scale = Vector2( 0.00964286, 0.00964286 )
 texture = ExtResource( 3 )
 
 [node name="h2" type="Sprite" parent="Life"]
-position = Vector2( 16.1984, -40.25 )
+position = Vector2( 15.1984, -61.25 )
 scale = Vector2( 0.00964286, 0.00964286 )
 texture = ExtResource( 3 )
 
 [node name="h1" type="Sprite" parent="Life"]
-position = Vector2( 32, -40 )
+position = Vector2( 31, -61 )
 scale = Vector2( 0.00964286, 0.00964286 )
 texture = ExtResource( 3 )
+
+[node name="Line2D" type="Line2D" parent="."]
