@@ -22,6 +22,7 @@ var hp: int = 5
 func hurt():
 	var life = get_node("Life")
 	var hurted: bool = false
+	#TODO: implement damage affection according to spider type
 	for lifeHeart in life.get_children():
 		if !hurted and lifeHeart.is_visible():
 			lifeHeart.hide()

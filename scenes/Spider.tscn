@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://icon-red.png" type="Texture" id=1]
+[ext_resource path="res://assets/objects/heart.png" type="Texture" id=2]
+[ext_resource path="res://scripts/SpiderSprite.gd" type="Script" id=3]
 
 [sub_resource type="GDScript" id=5]
 script/source = "extends KinematicBody2D
@@ -9,6 +11,7 @@ export(int) var speed = 100
 var velocity: Vector2 = Vector2.ZERO 
 
 var type:String = ''
+var hp: int = 3
 
 var path: Array = []
 var levelNavigation: Navigation2D = null
@@ -63,6 +66,24 @@ func attack():
 	# TODO: fix this horrible access
 	player.hurt()
 
+func hurt(bullet):
+	var life = get_node(\"Life\")
+	var hurted: bool = false
+	#TODO: Add damage life reduction
+	print(bullet.name)
+	print(bullet.type)
+	#TODO: Add animation
+	self.hp -= bullet.damage
+	for lifeHeart in life.get_children():
+		if !hurted and lifeHeart.is_visible():
+			lifeHeart.hide()
+			hurted = true
+	if(self.hp <= 0): die()
+
+func die():
+	#TODO: Play death animation
+	queue_free()
+
 func _on_Timer_timeout():
 	print('acabou o tempo')
 	attack()
@@ -86,6 +107,7 @@ script = SubResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
+script = ExtResource( 3 )
 
 [node name="Line2D" type="Line2D" parent="."]
 
@@ -100,6 +122,23 @@ shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 6 )
+
+[node name="Life" type="Node2D" parent="."]
+
+[node name="h3" type="Sprite" parent="Life"]
+position = Vector2( -15.8016, -43.25 )
+scale = Vector2( 0.00964286, 0.00964286 )
+texture = ExtResource( 2 )
+
+[node name="h2" type="Sprite" parent="Life"]
+position = Vector2( 0.198406, -43.25 )
+scale = Vector2( 0.00964286, 0.00964286 )
+texture = ExtResource( 2 )
+
+[node name="h1" type="Sprite" parent="Life"]
+position = Vector2( 16, -43 )
+scale = Vector2( 0.00964286, 0.00964286 )
+texture = ExtResource( 2 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

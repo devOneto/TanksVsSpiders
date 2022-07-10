@@ -20,7 +20,6 @@ script = ExtResource( 4 )
 shape = SubResource( 1 )
 
 [node name="Life" type="Node2D" parent="."]
-visible = false
 
 [node name="h5" type="Sprite" parent="Life"]
 position = Vector2( -32.8016, -61.25 )
