@@ -1,14 +1,12 @@
 extends RigidBody2D
 
+# Bullet Types: White, Red, Green, Blue
+
 #TODO: define different types
-var type: String = 'Yellow'
+var type: String = 'White'
 var damage: int = 1
 
 func _ready():
-	pass
-
-func _on_Node2D_body_entered(body):
-	print(body)
 	pass
 
 func _on_Area2D_body_entered(body):

@@ -14,7 +14,6 @@ const ROTATION_MAP = {
 var look_direction := Vector2.UP
 
 func _ready():
-	print(rotation_degrees)
 	pass # Replace with function body.
 
 func _process(delta):

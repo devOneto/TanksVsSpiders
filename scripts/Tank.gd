@@ -8,10 +8,11 @@ const LEFT = Vector2(-1,0)
 onready var sprite = $Sprite
 onready var line = $Line2D
 
-var bullet = preload("res://scenes/YellowBullet.tscn")
+var bullet = preload("res://scenes/Bullet.tscn")
 var bullet_speed = 1000
 var isShooting = false
 
+var bulletStack = []
 
 var direction: Vector2 = Vector2.ZERO
 var velocity: Vector2 = Vector2.ZERO
