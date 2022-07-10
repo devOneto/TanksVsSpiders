@@ -52,4 +52,3 @@ scale = Vector2( 0.00964286, 0.00964286 )
 texture = ExtResource( 2 )
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

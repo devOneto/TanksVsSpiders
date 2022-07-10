@@ -3,7 +3,7 @@ extends RigidBody2D
 # Bullet Types: White, Red, Green, Blue
 
 #TODO: define different types
-var type: String = 'White'
+export var type: String = 'white'
 var damage: int = 1
 
 func _ready():
