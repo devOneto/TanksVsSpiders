@@ -64,14 +64,8 @@ func attack():
 
 func hurt(bullet):
 	var life = get_node("Life")
-	var hurted: bool = false
-	#TODO: Add damage life reduction
 	#TODO: Add animation
 	self.hp -= bullet.damage
-	for lifeHeart in life.get_children():
-		if !hurted and lifeHeart.is_visible():
-			lifeHeart.hide()
-			hurted = true
 	if(self.hp <= 0): die()
 
 func die():
