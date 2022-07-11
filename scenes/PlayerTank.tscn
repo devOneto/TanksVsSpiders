@@ -87,4 +87,8 @@ texture = ExtResource( 6 )
 wait_time = 2.0
 one_shot = true
 
+[node name="FireCadenceTimer" type="Timer" parent="."]
+wait_time = 0.8
+
 [connection signal="timeout" from="ReloadTimer" to="." method="_on_ReloadTimer_timeout"]
+[connection signal="timeout" from="FireCadenceTimer" to="." method="_on_FireCadenceTimer_timeout"]

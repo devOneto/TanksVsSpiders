@@ -11,6 +11,7 @@ onready var line = $Line2D
 var bullet = preload("res://scenes/Bullet.tscn")
 var bullet_speed = 1000
 var isShooting = false
+onready var FireCadenseTimer = get_node("FireCadenceTimer")
 
 var bullet_stack: Array
 onready var bullet_stack_hud = get_node("BulletStackHUD")
@@ -37,7 +38,6 @@ func hurt():
 			hurted = true
 
 func fire(bullet):
-	print('atirou')
 	bullet.rotation = sprite.rotation
 	bullet.position = get_global_position()
 	bullet.apply_impulse(Vector2(), Vector2(bullet_speed,0).rotated(sprite.rotation - PI/2))
@@ -66,7 +66,11 @@ func _physics_process(delta):
 		# Input Fire
 		# Always takes the first bullet
 		# TODO: Add delay to fire
-		if Input.is_action_just_pressed("fire"): isShooting = fire(bullet_stack[0])
+		
+		if !isShooting and Input.is_action_just_pressed("fire"): 
+			isShooting = true
+			FireCadenseTimer.start()
+			fire(bullet_stack[0])
 		var last_bullet = bullet_stack.size() - 1
 		bullet_stack_hud.hide_bullet(last_bullet)
 	else:
@@ -96,6 +100,8 @@ func reload_special_bullet(type: String):
 		var new_special_bullet = bullet.instance()
 		new_special_bullet.type = type
 		bullet_stack.append(new_special_bullet)
-		print('index da ultima bala do bullet_stack:', bullet_stack.size() - 2)
-		print('bala que está no hud no indice da ultima bala do bullet_stack', bullet_stack_hud.get_children()[bullet_stack.size() - 2])
 		bullet_stack_hud.reload_special_bullet_hud(bullet_stack.size() - 2, type )
+
+func _on_FireCadenceTimer_timeout():
+	isShooting = false
+	pass # Replace with function body.
