@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sprite_3.png-0ce0165b3234b6c1ae065f73141dfeb4.stex"
+path="res://.import/green_sphere.png-e8f64c3fdaaa738168303cc38ca76627.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/objects/spheres/sprite_3.png"
-dest_files=[ "res://.import/sprite_3.png-0ce0165b3234b6c1ae065f73141dfeb4.stex" ]
+source_file="res://assets/spheres/green_sphere.png"
+dest_files=[ "res://.import/green_sphere.png-e8f64c3fdaaa738168303cc38ca76627.stex" ]
 
 [params]
 

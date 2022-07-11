@@ -58,6 +58,9 @@ func _physics_process(delta):
 	# Finally, Move!
 	move_and_slide(move_speed * move_direction)
 	
+	# Debug
+	if Input.is_action_just_pressed("test"): print(bullet_stack)
+	
 	# Identify Ammunition
 	if !bullet_stack.empty():
 		# Input Fire
@@ -78,10 +81,21 @@ func _process(delta):
 
 func reload():
 	for i in 6:
-		bullet_stack.append(bullet.instance())
+		var new_bullet = bullet.instance()
+		new_bullet.type = 'white'
+		bullet_stack.append(new_bullet)
 	get_node("BulletStackHUD").reload_bullet_stack_hud()
 
 func _on_ReloadTimer_timeout():
 	reload()
 	isReloading = false
 	pass
+
+func reload_special_bullet(type: String):
+	if bullet_stack.size() < 6:
+		var new_special_bullet = bullet.instance()
+		new_special_bullet.type = type
+		bullet_stack.append(new_special_bullet)
+		print('index da ultima bala do bullet_stack:', bullet_stack.size() - 2)
+		print('bala que está no hud no indice da ultima bala do bullet_stack', bullet_stack_hud.get_children()[bullet_stack.size() - 2])
+		bullet_stack_hud.reload_special_bullet_hud(bullet_stack.size() - 2, type )

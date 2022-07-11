@@ -3,7 +3,7 @@ extends KinematicBody2D
 export(int) var speed = 100
 var velocity: Vector2 = Vector2.ZERO 
 
-var type:String = ''
+var type:String = 'blue'
 var hp: int = 3
 
 var path: Array = []
@@ -15,6 +15,8 @@ var is_attacking: bool = false
 
 onready var line2d = $Line2D
 onready var timer = $Timer as Timer
+
+onready var power_sphere = preload('res://scenes/PowerSphereItem.tscn')
 
 func _ready():
 	yield(get_tree(),"idle_frame")
@@ -71,8 +73,17 @@ func hurt(bullet):
 	if(self.hp <= 0): die()
 
 func die():
+	#TODO: Drop random power sphere
+	drop_sphere()
 	#TODO: Play death animation
 	queue_free()
+
+func drop_sphere():
+	var droped_power_sphere = power_sphere.instance()
+	droped_power_sphere.position = self.position
+	droped_power_sphere.mutate(type)
+	get_parent().add_child(droped_power_sphere)
+	pass
 
 func _on_Timer_timeout():
 	attack()

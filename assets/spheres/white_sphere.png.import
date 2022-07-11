@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sprite_2.png-084b4ab9210ea2b49ec04a22729e37a5.stex"
+path="res://.import/white_sphere.png-c5db590b4d8a174ba027aba5bc5a284f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/objects/spheres/sprite_2.png"
-dest_files=[ "res://.import/sprite_2.png-084b4ab9210ea2b49ec04a22729e37a5.stex" ]
+source_file="res://assets/spheres/white_sphere.png"
+dest_files=[ "res://.import/white_sphere.png-c5db590b4d8a174ba027aba5bc5a284f.stex" ]
 
 [params]
 
