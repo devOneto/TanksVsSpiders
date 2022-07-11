@@ -42,4 +42,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="RedDamageTimer" type="Timer" parent="."]
+
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="RedDamageTimer" to="." method="_on_RedDamageTimer_timeout"]

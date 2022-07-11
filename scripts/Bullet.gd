@@ -11,7 +11,7 @@ func _ready():
 
 func _on_Area2D_body_entered(body):
 	# TODO: add bullet explosion efect
-	if body.name == 'Spider':
+	if body.entityType == 'Spider':
 		var spider = body
 		spider.hurt(self)
 	queue_free()

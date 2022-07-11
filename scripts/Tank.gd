@@ -46,8 +46,12 @@ func fire(bullet):
 	bullet_stack.pop_front()
 
 func _physics_process(delta):
-	var input_vector: Vector2
 	
+	#Dubug Only
+	if Input.is_action_just_pressed("test"):
+		bullet_stack[0].type = 'red'
+	
+	var input_vector: Vector2
 	# Input Detection:
 	var lr_input = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
 	var ud_input = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
@@ -58,15 +62,11 @@ func _physics_process(delta):
 	# Finally, Move!
 	move_and_slide(move_speed * move_direction)
 	
-	# Debug
-	if Input.is_action_just_pressed("test"): print(bullet_stack)
-	
 	# Identify Ammunition
 	if !bullet_stack.empty():
 		# Input Fire
 		# Always takes the first bullet
 		# TODO: Add delay to fire
-		
 		if !isShooting and Input.is_action_just_pressed("fire"): 
 			isShooting = true
 			FireCadenseTimer.start()

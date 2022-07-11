@@ -90,4 +90,6 @@ position = Vector2( 1423, 465 )
 
 [node name="Spider" parent="." instance=ExtResource( 1 )]
 position = Vector2( 532, 475 )
-speed = 100
+
+[node name="Spider2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 105, 491 )

@@ -3,9 +3,11 @@ extends KinematicBody2D
 export(int) var speed = 100
 var velocity: Vector2 = Vector2.ZERO 
 
-var type:String = 'blue'
+var type:String = 'red'
 var hp: int = 10
 var max_hp:int = 10
+var hurting = false
+var red_hurt_times = 0
 
 var path: Array = []
 var levelNavigation: Navigation2D = null
@@ -18,6 +20,10 @@ onready var line2d = $Line2D
 onready var timer = $Timer as Timer
 
 onready var power_sphere = preload('res://scenes/PowerSphereItem.tscn')
+
+onready var redDamageTimer = $RedDamageTimer
+
+var entityType: String = 'Spider'
 
 func _ready():
 	yield(get_tree(),"idle_frame")
@@ -40,6 +46,7 @@ func _physics_process(delta):
 				timer.start()
 				is_attacking = true
 	move()
+	if(self.hp <= 0): die()
 	pass
 
 func navigate():
@@ -63,10 +70,11 @@ func attack():
 	player.hurt()
 
 func hurt(bullet):
-	var life = get_node("Life")
+	print(bullet.type)
+	print('eu sou: ', self)
+	print('meu hp é', hp)
 	#TODO: Add animation
-	self.hp -= bullet.damage
-	if(self.hp <= 0): die()
+	apply_bullet_effect(bullet.type)
 
 func die():
 	#TODO: Drop random power sphere
@@ -84,3 +92,29 @@ func drop_sphere():
 func _on_Timer_timeout():
 	attack()
 	is_attacking = false
+
+func white_hurt_effect():
+	self.hp -= 5
+	pass
+
+func red_hurt_effect():
+	redDamageTimer.start()
+
+func _on_RedDamageTimer_timeout():
+	hp -= 1
+	red_hurt_times+=1
+	if(red_hurt_times==3): 
+		redDamageTimer.stop()
+		red_hurt_times = 0
+
+func green_hurt_effect():
+	pass
+
+func blue_hurt_effect():
+	pass
+
+func apply_bullet_effect(type: String):
+	if type == 'white': white_hurt_effect()
+	if type == 'red': red_hurt_effect()
+	if type == 'red': green_hurt_effect()
+	if type == 'red': blue_hurt_effect()
