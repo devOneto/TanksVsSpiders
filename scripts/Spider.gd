@@ -4,7 +4,8 @@ export(int) var speed = 100
 var velocity: Vector2 = Vector2.ZERO 
 
 var type:String = 'blue'
-var hp: int = 3
+var hp: int = 10
+var max_hp:int = 10
 
 var path: Array = []
 var levelNavigation: Navigation2D = null
@@ -29,6 +30,7 @@ func _ready():
 	
 	
 func _physics_process(delta):
+	get_node("LifeProgressBar").value = hp  * 100/max_hp
 	#line2d.global_position = Vector2.ZERO
 	if player and levelNavigation:
 		generate_path()
