@@ -12,8 +12,9 @@ var BULLET_COLOR_SPHERE_MAP = {
 	'blue':blue_sphere_texture,
 }
 
-var type: String
+var Bullet = preload("res://scripts/Bullet.gd")
 
+var type: String
 var sphere_scale = Vector2(0.12, 0.12)
 
 func _ready():
@@ -28,8 +29,9 @@ func mutate(type:String):
 
 func _on_Node2D_body_entered(body):
 	#TODO: if spiders take sphere they get stronger! hahaha
-	if body.name == 'PlayerTank':
-		var tank = body
-		tank.reload_special_bullet(self.type)
+	if body.is_in_group('Player'):
+		var new_bullet = Bullet.new()
+		new_bullet.type = self.type
+		body.reload(new_bullet)
 		queue_free()
 	pass # Replace with function body.

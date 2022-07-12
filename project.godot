@@ -14,9 +14,13 @@ config/name="TanksVsSpiders"
 run/main_scene="res://scenes/Levels/Level_01.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://scripts/Global.gd"
+
 [display]
 
-window/size/width=1680
+window/size/width=1366
 window/size/height=768
 
 [input]

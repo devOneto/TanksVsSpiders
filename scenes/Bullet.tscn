@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scripts/Bullet.gd" type="Script" id=1]
-[ext_resource path="res://assets/bullets/Bullet.png" type="Texture" id=2]
+[ext_resource path="res://scripts/BulletSprite.gd" type="Script" id=3]
 
 [sub_resource type="CapsuleShape2D" id=3]
 radius = 7.0
@@ -21,7 +21,7 @@ script = ExtResource( 1 )
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0, -1 )
 scale = Vector2( 0.240415, 0.374667 )
-texture = ExtResource( 2 )
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
