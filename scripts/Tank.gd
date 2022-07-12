@@ -17,9 +17,9 @@ var velocity: Vector2 = Vector2.ZERO
 # Entity Properties
 var max_hp: int
 var hp: int
-var move_speed = 500
+var move_speed = 200
 var bullet_stack = []
-var bullet_speed = 200
+var bullet_speed = 800
 
 func _ready():
 	self.max_hp = 20
@@ -76,6 +76,9 @@ func reload(bullet):
 	new_bullet.type = bullet.type
 	bullet_stack.append(new_bullet)
 	pass
+
+func cure():
+	self.hp+=2
 
 func _on_ReloadTimer_timeout():
 	pass

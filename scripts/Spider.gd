@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-export(int) var speed = 50
+export(int) var speed = 150
 var velocity: Vector2 = Vector2.ZERO 
 
 var rng = RandomNumberGenerator.new()
@@ -22,7 +22,7 @@ var is_player_on_hitbox: bool = false
 
 onready var line2d = $Line2D
 onready var attack_timer = $AttackTimer
-onready var redDamageTimer = $RedDamageTimer
+onready var redDamageTimer = $RedEffectTimer
 
 onready var power_sphere = preload('res://scenes/PowerSphereItem.tscn')
 
@@ -65,21 +65,11 @@ func generate_path():
 	if levelNavigation != null and player != null :
 		path = levelNavigation.get_simple_path(global_position, player.global_position, false)
 
-func hurt(bullet):
-	#TODO: Add animation
-	apply_bullet_effect(bullet.type)
-
-func die():
-	#TODO: Drop random power sphere
-	drop_sphere()
-	#TODO: Play death animation
-	queue_free()
-
 func apply_bullet_effect(type: String):
 	if type == 'white': white_hurt_effect()
 	if type == 'red': red_hurt_effect()
-	if type == 'red': green_hurt_effect()
-	if type == 'red': blue_hurt_effect()
+	if type == 'green': green_hurt_effect()
+	if type == 'blue': blue_hurt_effect()
 
 func drop_sphere():
 	var droped_power_sphere = power_sphere.instance()
@@ -100,13 +90,23 @@ func _on_AttackTimer_timeout():
 	player.hurt(attack_damage)
 	is_attacking = false
 
-func white_hurt_effect(): self.hp -= 5
+func hurt(bullet):
+	#TODO: Add animation
+	apply_bullet_effect(bullet.type)
 
-func red_hurt_effect(): redDamageTimer.start()
+func white_hurt_effect(): 
+	self.hp -= 5
 
-func green_hurt_effect(): pass
+func red_hurt_effect(): 
+	redDamageTimer.start()
 
-func blue_hurt_effect(): pass
+func blue_hurt_effect():
+	self.hp -= 3 
+	self.speed -= 25 
+	pass
+
+func green_hurt_effect():
+	player.cure()
 
 func _on_RedDamageTimer_timeout():
 	hp -= 1
@@ -114,3 +114,10 @@ func _on_RedDamageTimer_timeout():
 	if(red_hurt_times==3): 
 		redDamageTimer.stop()
 		red_hurt_times = 0
+
+func die():
+	#TODO: Drop random power sphere
+	drop_sphere()
+	#TODO: Play death animation
+	queue_free()
+
