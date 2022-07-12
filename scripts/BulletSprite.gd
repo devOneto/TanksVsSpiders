@@ -14,6 +14,5 @@ var BULLET_COLOR_SPHERE_MAP = {
 
 func _process(delta):
 	var type = get_parent().type
-	print('tipo:', type)
 	texture = BULLET_COLOR_SPHERE_MAP[type]
 	scale = Vector2(0.2,0.2)

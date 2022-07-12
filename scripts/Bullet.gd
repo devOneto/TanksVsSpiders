@@ -19,7 +19,7 @@ var damage: int = 1
 
 func _on_Area2D_body_entered(body):
 	# TODO: add bullet explosion efect
-	if body.is_in_group('Spider'):
+	if body.is_in_group('Spiders'):
 		var spider = body
 		spider.hurt(self)
 	queue_free()

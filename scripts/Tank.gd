@@ -24,11 +24,7 @@ var bullet_speed = 800
 func _ready():
 	self.max_hp = 20
 	self.hp = self.max_hp
-	# First Bullet Loads
-	for i in [0,1,2,3,4]:
-		var new_bullet = Bullet.instance()
-		new_bullet.type = 'white'
-		self.bullet_stack.append(new_bullet)
+	input_reload()
 
 func _physics_process(delta):
 	# Life Controller
@@ -48,10 +44,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("fire"): 
 		if bullet_stack.size() != 0:
 			fire()
-	# Debug
-	if Input.is_action_just_pressed("test"):
-		for i in range(bullet_stack.size()):
-			print(i, bullet_stack[i].type)
+	if Input.is_action_just_pressed("reload"): 
+		input_reload()
 
 func _process(delta):
 	pass
@@ -66,7 +60,6 @@ func fire():
 	bullet.rotation = tank_sprite.rotation
 	bullet.position = get_global_position()
 	bullet.apply_impulse(Vector2(), Vector2(bullet_speed,0).rotated(tank_sprite.rotation - PI/2))
-	print('Antes de colocar na arvore do pai é isso aqui: ', bullet.name)
 	get_tree().get_root().add_child(bullet)
 	pass
 
@@ -76,6 +69,13 @@ func reload(bullet):
 	new_bullet.type = bullet.type
 	bullet_stack.append(new_bullet)
 	pass
+
+func input_reload():
+	for i in [0,1,2,3,4]:
+		var new_bullet = Bullet.instance()
+		new_bullet.type = 'white'
+		self.bullet_stack.append(new_bullet)
+		Hud.get_node("HBoxContainer").get_node("BulletStackControl").add_bullet(new_bullet)
 
 func cure():
 	self.hp+=2

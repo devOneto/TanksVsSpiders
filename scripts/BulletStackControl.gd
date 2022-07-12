@@ -13,7 +13,7 @@ var BULLET_COLOR_SPHERE_MAP = {
 }
 
 var bullet_stack
-var bullet_stack_hud
+onready var bullet_stack_hud = get_children()
 
 func _process(delta):
 	bullet_stack_hud = get_children()
@@ -21,10 +21,11 @@ func _process(delta):
 func add_bullet(bullet):
 	var new_power_sphere_hud = Sprite.new()
 	new_power_sphere_hud.texture = BULLET_COLOR_SPHERE_MAP[bullet.type]
-	new_power_sphere_hud.position.x = 50 + 50*bullet_stack_hud.size()
-	new_power_sphere_hud.position.y = 40
 	new_power_sphere_hud.scale = Vector2(0.2,0.2)
 	add_child(new_power_sphere_hud)
+	bullet_stack_hud.append(new_power_sphere_hud)
+	new_power_sphere_hud.position.x = 50 + 50*bullet_stack_hud.size()
+	new_power_sphere_hud.position.y = 40
 
 func remove_bullet():
 	bullet_stack_hud[-1].queue_free()
