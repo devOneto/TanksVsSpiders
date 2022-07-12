@@ -5,6 +5,8 @@ onready var tank_sprite = $Sprite
 onready var fire_cadense_timer = $FireCadenceTimer
 onready var reload_timer = $ReloadTimer
 onready var life_progress_bar = $LifeProgressBar
+onready var explosion_audio_stream = $ExplosionStreamPlayer
+onready var trail_audio_stream = $TrailStreamPlayer
 
 # Getting External Scenes
 var Bullet = preload("res://scenes/Bullet.tscn")
@@ -38,6 +40,9 @@ func _physics_process(delta):
 		input_vector = Vector2( lr_input, ud_input )
 	var move_direction := input_vector.normalized()
 	move_and_slide(move_speed * move_direction)
+	# Moving Sound Controller
+	# TODO: Play Audio While Player is Moving
+	if move_direction != Vector2.ZERO : trail_audio_stream.play()
 	# HUD Controller
 	Global.bullet_stack = bullet_stack
 	# Fire Controller
@@ -61,6 +66,7 @@ func fire():
 	bullet.position = get_global_position()
 	bullet.apply_impulse(Vector2(), Vector2(bullet_speed,0).rotated(tank_sprite.rotation - PI/2))
 	get_tree().get_root().add_child(bullet)
+	explosion_audio_stream.play()
 	pass
 
 func reload(bullet):

@@ -23,6 +23,7 @@ var is_player_on_hitbox: bool = false
 onready var line2d = $Line2D
 onready var attack_timer = $AttackTimer
 onready var redDamageTimer = $RedEffectTimer
+onready var roar_audio_stream = $AudioStreamPlayer
 
 onready var power_sphere = preload('res://scenes/PowerSphereItem.tscn')
 
@@ -91,6 +92,7 @@ func _on_AttackTimer_timeout():
 	is_attacking = false
 
 func hurt(bullet):
+	roar_audio_stream.play()
 	#TODO: Add animation
 	apply_bullet_effect(bullet.type)
 
