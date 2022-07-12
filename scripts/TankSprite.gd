@@ -1,4 +1,4 @@
-extends Sprite
+extends AnimatedSprite
 
 const ROTATION_MAP = {
 	Vector2.UP: 0,
