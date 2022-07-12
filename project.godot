@@ -11,7 +11,7 @@ config_version=4
 [application]
 
 config/name="TanksVsSpiders"
-run/main_scene="res://scenes/Levels/Level_01.tscn"
+run/main_scene="res://scenes/Levels/Menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]

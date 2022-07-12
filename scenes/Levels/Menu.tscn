@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/menu/menu.png" type="Texture" id=1]
+[ext_resource path="res://scripts/Menu.gd" type="Script" id=2]
+
+[node name="Menu" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 685, 383 )
+texture = ExtResource( 1 )
+
+[node name="Level01Button" type="Button" parent="."]
+margin_left = 569.0
+margin_top = 462.0
+margin_right = 765.0
+margin_bottom = 505.0
+text = "Play Level 01 - Survival"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Level02Button" type="Button" parent="."]
+margin_left = 569.0
+margin_top = 525.0
+margin_right = 765.0
+margin_bottom = 568.0
+text = "Play Level 02 - Survival"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExitButton" type="Button" parent="."]
+margin_left = 568.0
+margin_top = 587.0
+margin_right = 764.0
+margin_bottom = 630.0
+text = "Exit"
+__meta__ = {
+"_edit_use_anchors_": false
+}
